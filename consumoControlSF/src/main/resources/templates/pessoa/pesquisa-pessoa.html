@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout-padrao}">
+<body>
+	<section layout:fragment="conteudo">
+		<div class="page-header">
+			<div class="container-fluid">
+				<h1>
+					Pesquisar Pessoa
+				</h1>
+			</div>
+		</div>
+		
+		<div class="container-fluid">
+		
+			<form method="GET" class="form-vertical  js-form-loading" th:object="${pessoaFilter}">		
+				<div class="input-group">
+					<input id="nome" type="text" class="form-control" th:field="*{nome}" placeholder="Digite um nome para pesquisar"/>
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="submit">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</span>
+				</div>
+			</form>
+			
+			<div><span> &nbsp; </span></div>
+
+			<div class="table-responsive">
+				<table id="tabela-pessoa" class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
+					<thead class="aw-table-header-solid">
+						<tr>
+							<th class="table-pessoa-col-id">ID</th>
+							<th>Nome</th>
+							<th class="table-pessoa-col-cpf">CPF</th>
+							<th class="table-pessoa-col-idade">Idade</th>
+							<th class="table-pessoa-col-Tipo">Tipo</th>
+							<th class="table-pessoa-col-icons"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="pessoa : ${pessoas}">
+							<td th:text="${pessoa.id}"></td>
+							<td><a href="#" th:text="${pessoa.nome}"></a></td>
+							<td th:text="${pessoa.cpf}"></td>
+							<td th:text="${{pessoa.idade}}"></td>
+							<td th:text="#{|tipoPessoa.${pessoa.tipoPessoa}|}"></td>
+							<td class="table-pesq-pessoa-col-acoes">
+								<div class="btn-group">
+									<button class="btn  btn-default btn-xs">
+										<i class="fa  fa-trash"></i>
+									</button>
+								</div>
+							</td>
+						</tr>
+						<tr th:if="${pessoas.empty}">
+							<td colspan="5">Nenhuma pessoa encontrada!</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

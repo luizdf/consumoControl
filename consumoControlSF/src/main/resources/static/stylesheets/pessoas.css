@@ -1,0 +1,17 @@
+.table-pessoa-col-id, table-pessoa-col-icons {
+	width: 60px;
+	text-align: center;
+}
+
+.table-pessoa-col-cpf {
+	width: 150px;
+}
+
+.table-pessoa-col-Tipo {
+	width: 100px;
+}
+
+.table-pessoa-col-idade {
+	width: 100px;
+	text-align: right;
+}
